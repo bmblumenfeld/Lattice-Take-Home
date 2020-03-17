@@ -1,13 +1,43 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Lattice Movie Viewer :movie_camera: :film_strip: :clapper:
 
-## Available Scripts
+A MVP movie-veiwing app
 
-In the project directory, you can run:
+## Getting Started
 
-### `yarn start`
+To run this project you will need Node >= 8.10 / yarn / redis
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+```bash
+brew install node
+brew install yarn
+brew install redis
+```
+
+### Spinning up Backend :rocket:
+
+From `/backend` of the project you can then run:
+
+```
+redis-server
+```
+
+In a new terminal window you can then run
+
+```bash
+yarn install
+yarn start-server
+```
+
+### Spinning up Frontend :desktop_computer:
+
+From `/frontend` of the project you can then run:
+
+```bash
+yarn install
+yarn start
+```
+
+Runs the app in development mode.<br />
+Open [http://localhost:3000](http://localhost:3000) to view it in the browser. (should open automatically)
 
 The page will reload if you make edits.<br />
 You will also see any lint errors in the console.
@@ -17,52 +47,29 @@ You will also see any lint errors in the console.
 Launches the test runner in the interactive watch mode.<br />
 See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `yarn build`
+## Technology and considerations:
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- To get this project moving I used create-react-app
+- For FE state management I used Redux. For this application it is a bit unnecessary; however,
+  it really sets this project up to be extended very easily!
+- [Movie DB](https://developers.themoviedb.org/3/getting-started "Movie DB") Source of all movie data
+- [Redis](https://redislabs.com/redis-enterprise/use-cases/caching/ "Redis") basic in-memory cache
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+## Assumptions:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+I felt like I stuck within the guides of the specific project description; however, I made some assumptions
+along the way.
 
-### `yarn eject`
+- There was no clear definition of 'popular' so I went with what would be most useful to our user (in my opinion) -- currently trending movies
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## Taking this project to the next level
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+There many things that could be improved even with the features that are currently built -- this is an MVP afterall.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `yarn build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+- Move styling to [styled components](https://styled-components.com/ "Styled Components") There is quite a bit of styling cruft that could be made more reusable styled components.
+- Routing instead of the current routing logic in redux
+- Refining caching logic as our user-base scales
+- Better delineation of what is trending, all time best, etc.
+- All movies is almost useless, having the ability to page through all movies efficiently is necessary for users to realistically make use of the feature.
+- Robust testing
+- Sorting by decade would be a nice-to-have
